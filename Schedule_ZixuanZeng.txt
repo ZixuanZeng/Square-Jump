@@ -1,0 +1,3 @@
+Schedule and deliverable:
+	-Create Objects of the project including obstacles, bullets, and monsters--Friday 03/10(6 hours)
+	-Create player objects or character of this project(game)--Friday 03/17 (4 hours)
