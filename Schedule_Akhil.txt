@@ -1,4 +1,4 @@
 Schedules and Deliverables:
-  Create the characters and obstacles - 3 hours
-  Updates of scores - 2 hours
-  Work on different GUI (before, during and after game) - 3 hours
+  Create the characters and obstacles - Friday 3/17 - 3 hours
+  Updates of scores - Monday 3/20 - 2 hours
+  Work on different GUI (before, during and after game) - Monday 3/20 - 3 hours
