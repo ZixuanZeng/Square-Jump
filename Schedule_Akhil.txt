@@ -1,0 +1,4 @@
+Schedules and Deliverables:
+  Create the characters and obstacles - 3 hours
+  Updates of scores - 2 hours
+  Work on different GUI (before, during and after game) - 3 hours
