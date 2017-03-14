@@ -1,7 +1,7 @@
 public interface Movable{
-  double GravitationConstant;
+  protected final double GravitationConstant;
   
-  void moveDown();
-  void moveLeft();
-  void moveRight();
+  public void fall();
+  public void moveLeft();
+  public void moveRight();
 }
