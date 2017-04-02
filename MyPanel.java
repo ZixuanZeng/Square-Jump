@@ -5,7 +5,7 @@ import javax.swing.*;
 public class MyPanel extends JApplet implements Background, ActionListener{
 	
 	JLabel text;
-	JToggleButton button1;
+	JToggleButton button1, button2, button3, button4;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -29,19 +29,38 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	MyPanel(){
 		JFrame game = new JFrame  ("A game similar to Doodle Jump ---- Square-Jump");
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		JPanel myPanel = new JPanel();
 		myPanel.setOpaque(true);
 		myPanel.setBackground(Color.BLACK);
 		myPanel.setLayout(null);
+		
 		JLabel gameName = new JLabel("Welcom to    Square Jump", JLabel.CENTER);
 		gameName.setSize(1000, 30);
         gameName.setLocation(5, 5);
 		gameName.setFont(new Font("Courier New", Font.ITALIC, 30));
 	    gameName.setForeground(Color.BLUE);
+	    
 	    button1 = new JToggleButton("Start");
 	    button1.setSize(100, 30);
         button1.setLocation(400, 200);
+        
+        button2 = new JToggleButton("Tutorial");
+        button2.setSize(100,30);
+        button2.setLocation(400,300);
+        
+        button3 = new JToggleButton("Score Board");
+        button3.setSize(100,30);
+        button3.setLocation(400,400);
+        
+        button4 = new JToggleButton("Quit");
+        button4.setSize(100,30);
+        button4.setLocation(400,500);
+        
 	    myPanel.add(button1);
+	    myPanel.add(button2);
+	    myPanel.add(button3);
+	    myPanel.add(button4);
 	    myPanel.add(gameName);
 	    game.setContentPane(myPanel);
 	    game.setSize(1000,800);
