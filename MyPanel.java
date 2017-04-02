@@ -3,25 +3,25 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MyPanel extends JApplet implements Background, ActionListener{
-	
-	JLabel text;
+
 	JToggleButton button1, button2, button3, button4;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Graphics graph = null;
+		/*
 		MyPanel panel = new MyPanel();
 		panel.setLayout(null);
 		panel.displayTutorial();
-		panel.paint(graph);
+		//panel.paint(graph);
 		panel.drawObstacles(0, 0, 1, graph, 2);
 		panel.playBackgroundMusic();
 		panel.playGameMusic();
-		panel.run();
+		panel.run();*/
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
-				new MyPanel();
-				//new MyPanel().makeGUI();
+				//new MyPanel();
+				new MyPanel().makeGUI();
 			}
 		});
 	}
@@ -84,18 +84,16 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	
 	private void makeGUI(){
 		setLayout(new FlowLayout());
-		text = new JLabel ("Start game!");
 		button1 = new JToggleButton("Start");
 		button1.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent ie){
 				if(button1.isSelected()){
-					text.setText("Start game!");
+					
 				}
 			}
 		});
 		
 		add(button1);
-		add(text);
 	}
 
 	@Override
