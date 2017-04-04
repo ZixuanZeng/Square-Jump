@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import java.util.concurrent.CountDownLatch;
  
  
 public class GameBackground extends Application {
@@ -25,9 +26,28 @@ public class GameBackground extends Application {
     private Integer timeFrames = STARTTIME;
     private GamePanel gamePanel;
     
- 
+    public static final CountDownLatch latch = new CountDownLatch(1);
+    public static GameBackground gameBackground = null;
+    /*
     public static void main(String[] args) {
-        Application.launch(args);
+    	Application.launch(args);
+    }*/
+    public GameBackground(){
+    	setGameBackground(this);
+    }
+    
+    public static GameBackground waitForGameBackground() {
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return gameBackground;
+    }
+    
+    public static void setGameBackground(GameBackground gameBackground0) {
+        gameBackground = gameBackground0;
+        latch.countDown();
     }
  
     @Override
@@ -83,8 +103,7 @@ public class GameBackground extends Application {
     	for(Shape shape : gamePanel.getElements()) {
     		if(shape instanceof Square || shape instanceof Platform) {
     			gc.setFill(shape.getColor());
-    			gc.fillRect(shape.getXPos(), shape.getYPos(), 
-				    shape.getWidth(), shape.getHeight());
+    			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
     		}         
     	}
     }
