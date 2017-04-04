@@ -56,7 +56,7 @@ public class Square extends Shape implements Movable{
 		int deltaTime = Time-StartTime;
 		YPos = initYPos - (JumpDistance*JumpDistance - 
 				(deltaTime-JumpDistance)*(deltaTime-JumpDistance))/Speed;
-		//System.out.println("pos: " + YPos + "time" + deltaTime);
+		System.out.println("pos: " + YPos + "time" + deltaTime);
 		if(deltaTime > JumpDistance) isFalling = true;
 	}
 

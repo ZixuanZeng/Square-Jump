@@ -20,7 +20,7 @@ public class GameBackground extends Application {
 	private static final int FPS = 25;
     private static final Integer STARTTIME = 0;
     public static final int Width = 400;
-    public static final int Height = 700;
+    public static final int Height = 620;
     
     private Timeline timeline;
     private Integer timeFrames = STARTTIME;
@@ -28,10 +28,12 @@ public class GameBackground extends Application {
     
     public static final CountDownLatch latch = new CountDownLatch(1);
     public static GameBackground gameBackground = null;
-    /*
+    
+   /*
     public static void main(String[] args) {
-    	Application.launch(args);
+        Application.launch(args);
     }*/
+    
     public GameBackground(){
     	setGameBackground(this);
     }
@@ -56,7 +58,7 @@ public class GameBackground extends Application {
         // Setup the Stage and the Scene (the scene graph)
         primaryStage.setTitle("Square Jump");
         Group root = new Group();
-        Scene scene = new Scene(root, Width, Height);
+        Scene scene = new Scene(root, Width, Height+80);
         Canvas canvas = new Canvas(Width, Height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gamePanel = new GamePanel(Width, Height);
@@ -76,6 +78,7 @@ public class GameBackground extends Application {
                   event -> {
 					// TODO Auto-generated method stub
 					timeFrames++;
+					gamePanel.setTime(timeFrames);
 				    drawShapes(gc);
 				}));
         timeline.playFromStart();
@@ -103,7 +106,8 @@ public class GameBackground extends Application {
     	for(Shape shape : gamePanel.getElements()) {
     		if(shape instanceof Square || shape instanceof Platform) {
     			gc.setFill(shape.getColor());
-    			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    			gc.fillRect(shape.getXPos(), shape.getYPos(), 
+				    shape.getWidth(), shape.getHeight());
     		}         
     	}
     }
