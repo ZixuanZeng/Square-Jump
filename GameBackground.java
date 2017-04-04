@@ -18,8 +18,8 @@ public class GameBackground extends Application {
 	// private class constant and some variables
 	private static final int FPS = 25;
     private static final Integer STARTTIME = 0;
-    private static final int Width = 400;
-    private static final int Height = 700;
+    public static final int Width = 400;
+    public static final int Height = 700;
     
     private Timeline timeline;
     private Integer timeFrames = STARTTIME;
@@ -83,7 +83,8 @@ public class GameBackground extends Application {
     	for(Shape shape : gamePanel.getElements()) {
     		if(shape instanceof Square || shape instanceof Platform) {
     			gc.setFill(shape.getColor());
-    			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    			gc.fillRect(shape.getXPos(), shape.getYPos(), 
+				    shape.getWidth(), shape.getHeight());
     		}         
     	}
     }
