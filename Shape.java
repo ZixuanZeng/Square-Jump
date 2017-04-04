@@ -1,13 +1,15 @@
-import java.awt.Graphics;
+import javafx.scene.paint.Color;
 
-public interface Shape
-{
-  int size; //size of monsters 
-  String color; //color
-  
-  void paint(Graphics g);
-  void position(int x, int y);
-  void run();
-  
+public abstract class Shape {
+	protected int XPos;
+	protected int YPos;
+	protected int Width;
+	protected int Height;
+	protected Color color;
+
+	public abstract int getXPos();
+	public abstract int getYPos();
+	public abstract int getWidth();
+	public abstract int getHeight();
+	public abstract Color getColor();
 }
-
