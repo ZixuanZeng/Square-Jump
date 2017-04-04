@@ -1,6 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 
 public class MyPanel extends JApplet implements Background, ActionListener{
 	
@@ -11,11 +16,11 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Graphics graph = null;
 		
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
-				new MyPanel().makeGUI();
+				new MyPanel().makeGUI();;
+				new GameBackground();
 			}
 		});
 	}
@@ -41,6 +46,17 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	    button1.setSize(100, 30);
         button1.setLocation(400, 200);
         myPanel.add(button1);
+        button1.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent arg0){
+        		new Thread() {
+                    @Override
+                    public void run() {
+                        javafx.application.Application.launch(GameBackground.class);
+                    }
+                }.start();
+                GameBackground gameBackground = GameBackground.waitForGameBackground();
+        	}
+        });
         
         button2 = new JToggleButton("Tutorial");
         button2.setSize(100,30);
