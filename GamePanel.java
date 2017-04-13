@@ -3,12 +3,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
+
 public class GamePanel {
 	private List<Shape> Elements = new ArrayList<Shape>();
 	private List<Integer> UsedRows;
 	private int Time;
 	private int Width;
 	private int Height;
+	private Square s;
 	private Collision collision;
 	
 	public GamePanel(int width, int height) {
@@ -25,7 +29,7 @@ public class GamePanel {
 				UsedRows.set(i, 1);
 			}
 		}
-		Square s = new Square(width/2, height-20, Time);
+		s = new Square(width/2, height-20, Time);
 		Elements.add(s);
 		collision = new CollisionEvent(Elements);
 	}
@@ -44,4 +48,10 @@ public class GamePanel {
 	public List<Shape> getElements() {
 		return Elements;
 	}
+	
+	public Square getSquare(){
+		return s;
+	}
+	
+    
 }
