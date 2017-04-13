@@ -32,7 +32,7 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 		
 		myPanel = new JPanel();
 		myPanel.setOpaque(true);
-		myPanel.setBackground(Color.BLACK);
+		myPanel.setBackground(Color.WHITE);
 		myPanel.setLayout(null);
 		
 		gameName = new JLabel("Welcom to    Square Jump", JLabel.CENTER);

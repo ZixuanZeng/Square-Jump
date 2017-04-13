@@ -125,6 +125,8 @@ public class GameBackground extends Application {
     	        	s.moveRight();
     	        	System.out.println("Move right");
     	        	break;
+				default:
+					break;
     	        }
     	      }
     	    });

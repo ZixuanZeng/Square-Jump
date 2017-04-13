@@ -1,7 +1,7 @@
 
 public interface Movable {
     public static final int Speed = 6; // smaller is faster
-    public static final int JumpDistance = 30;
+    public static final int JumpDistance = 35;
 	
     public void setStartTime(int time);
     public void setTime(int time);
