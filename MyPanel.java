@@ -58,7 +58,7 @@ public class MyPanel extends JApplet implements Background, ActionListener{
         	}
         });
         
-        button2 = new JToggleButton("Tutorial");
+        button2 = new JToggleButton("Control");
         button2.setSize(100,30);
         button2.setLocation(400,300);
         myPanel.add(button2);
