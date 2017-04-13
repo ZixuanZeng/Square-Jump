@@ -7,12 +7,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import java.util.concurrent.CountDownLatch;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
  
  
 public class GameBackground extends Application {
@@ -25,14 +29,10 @@ public class GameBackground extends Application {
     private Timeline timeline;
     private Integer timeFrames = STARTTIME;
     private GamePanel gamePanel;
+    public Square s;
     
     public static final CountDownLatch latch = new CountDownLatch(1);
     public static GameBackground gameBackground = null;
-    
-   /*
-    public static void main(String[] args) {
-        Application.launch(args);
-    }*/
     
     public GameBackground(){
     	setGameBackground(this);
@@ -62,6 +62,7 @@ public class GameBackground extends Application {
         Canvas canvas = new Canvas(Width, Height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gamePanel = new GamePanel(Width, Height);
+        s = gamePanel.getSquare();
  
         // Create and configure the Button
         Button button = new Button();
@@ -99,6 +100,7 @@ public class GameBackground extends Application {
  
         primaryStage.setScene(scene);
         primaryStage.show();
+        KeyPressed(scene, s);
     }
 
     private void drawShapes(GraphicsContext gc) {
@@ -106,9 +108,26 @@ public class GameBackground extends Application {
     	for(Shape shape : gamePanel.getElements()) {
     		if(shape instanceof Square || shape instanceof Platform) {
     			gc.setFill(shape.getColor());
-    			gc.fillRect(shape.getXPos(), shape.getYPos(), 
-				    shape.getWidth(), shape.getHeight());
+    			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
     		}         
     	}
     }
+    
+    private void KeyPressed(Scene scene, Square s){
+    	scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    	      @Override public void handle(KeyEvent event) {
+    	        switch (event.getCode()) {
+    	        case A:
+    	        	s.moveLeft();
+    	        	System.out.println("Move left");
+    	        	break;
+    	        case D:
+    	        	s.moveRight();
+    	        	System.out.println("Move right");
+    	        	break;
+    	        }
+    	      }
+    	    });
+    }
+    
 }
