@@ -28,9 +28,9 @@ public class GamePanel {
 				Platform p = new Platform(rand.nextInt(width-50), i*20);
 				Elements.add(p);
 				UsedRows.set(i, 1);
+				Monster m = new Monster(rand.nextInt(width-50), i*20);
+				Elements.add(m);
 			}
-			Monster m = new Monster(rand.nextInt(width-50), i*20);
-			Elements.add(m);
 		}
 		s = new Square(width/2, height-20, Time);
 		Elements.add(s);

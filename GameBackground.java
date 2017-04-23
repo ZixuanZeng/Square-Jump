@@ -106,10 +106,14 @@ public class GameBackground extends Application {
     private void drawShapes(GraphicsContext gc) {
     	gc.clearRect(0, 0, Width, Height);
     	for(Shape shape : gamePanel.getElements()) {
-    		if(shape instanceof Square || shape instanceof Platform || shape instanceof Monster) {
+    		if(shape instanceof Square || shape instanceof Platform) {
     			gc.setFill(shape.getColor());
     			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
-    		}         
+    		} 
+    		else if(shape instanceof Monster){
+    			gc.setFill(shape.getColor());
+    			gc.fillOval(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    		}
     	}
     }
     

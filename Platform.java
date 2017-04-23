@@ -39,4 +39,10 @@ public class Platform extends Shape{
 		// TODO Auto-generated method stub
 		return color;
 	}
+
+	@Override
+	public int getNumOfPoints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

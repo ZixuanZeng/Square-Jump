@@ -3,8 +3,8 @@ import javafx.scene.paint.Color;
 public class Monster extends Shape{
 	
 	public Monster(int xPos, int yPos) {
-		Height = 15;
-		Width = 50;
+		Height = 10;
+		Width = 10;
 		XPos = xPos;
 		YPos = yPos;
 		color = Color.RED;
@@ -14,31 +14,37 @@ public class Monster extends Shape{
 	@Override
 	public int getXPos() {
 		// TODO Auto-generated method stub
-		return 0;
+		return XPos;
 	}
 
 	@Override
 	public int getYPos() {
 		// TODO Auto-generated method stub
-		return 0;
+		return YPos;
 	}
 
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return Width;
 	}
 
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return Height;
 	}
 
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub
-		return null;
+		return color;
+	}
+
+	@Override
+	public int getNumOfPoints() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -72,4 +72,10 @@ public class Square extends Shape implements Movable{
 		initXPos = XPos;
 		initYPos = YPos;
 	}
+
+	@Override
+	public int getNumOfPoints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
