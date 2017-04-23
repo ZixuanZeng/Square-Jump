@@ -8,7 +8,7 @@ public class Monster extends Shape{
 		XPos = xPos;
 		YPos = yPos;
 		color = Color.RED;
-		//Test
+		
 	}
 
 	@Override
