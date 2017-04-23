@@ -18,6 +18,7 @@ public class GamePanel {
 	public GamePanel(int width, int height) {
 		Time = 0;
 		Random rand = new Random();
+		Random rand2 = new Random();
 		UsedRows = new ArrayList<Integer>(height/20);
 		Width = width;
 		Height = height;
@@ -28,6 +29,8 @@ public class GamePanel {
 				Elements.add(p);
 				UsedRows.set(i, 1);
 			}
+			Monster m = new Monster(rand.nextInt(width-50), i*20);
+			Elements.add(m);
 		}
 		s = new Square(width/2, height-20, Time);
 		Elements.add(s);
