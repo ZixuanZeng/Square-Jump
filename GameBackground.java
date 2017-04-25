@@ -76,9 +76,6 @@ public class GameBackground extends Application {
         if (timeline != null) {
             timeline.stop();
         }
-        if(collision.checkGameOver()){
-			this.drawGameOverScene(primaryStage);
-		}
         else{
         	timeFrames = STARTTIME;
             timeline = new Timeline();
@@ -87,9 +84,15 @@ public class GameBackground extends Application {
                     new KeyFrame(Duration.millis(1000/FPS),
                       event -> {
     					// TODO Auto-generated method stub
-    					timeFrames++;
-    					gamePanel.setTime(timeFrames);
-    					drawShapes(gc);
+                    	  if(collision.checkGameOver()){
+                    		  timeline.stop();
+                    		  this.drawGameOverScene(primaryStage);
+                  		  }
+                    	  else {
+                    		  timeFrames++;
+                    		  gamePanel.setTime(timeFrames);
+                    		  drawShapes(gc);
+                    	  }
     				}));
             timeline.playFromStart();
          // Create and configure VBox
