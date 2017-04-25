@@ -13,6 +13,7 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	JPanel myPanel;
 	JLabel gameName;
 	JToggleButton button1, button2, button3, button4;
+	ScoreBoard score;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -41,6 +42,8 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 		gameName.setFont(new Font("Courier New", Font.ITALIC, 30));
 	    gameName.setForeground(Color.BLUE);
 	    myPanel.add(gameName);
+	    score = new ScoreBoard();
+	    
 	    
 	    button1 = new JToggleButton("Start");
 	    button1.setSize(100, 30);
@@ -72,6 +75,11 @@ public class MyPanel extends JApplet implements Background, ActionListener{
         button3.setSize(150,30);
         button3.setLocation(375,400);
         myPanel.add(button3);
+        button3.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent arg0){
+        		JOptionPane.showMessageDialog(null, "Your score is " + score.awardPoints());
+        	}
+        });
         
         button4 = new JToggleButton("Quit");
         button4.addActionListener(e->System.exit(0));
