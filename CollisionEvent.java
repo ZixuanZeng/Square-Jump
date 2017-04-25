@@ -42,4 +42,10 @@ public class CollisionEvent implements Collision{
 		PrevYPos = YPos;
 		return false;
 	}
+	
+	@Override
+	public boolean checkGameOver(){
+		
+		return true;
+	}
 }

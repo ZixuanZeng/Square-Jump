@@ -12,11 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import java.util.concurrent.CountDownLatch;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.TextAlignment;
+import javafx.geometry.VPos;
  
  
 public class GameBackground extends Application {
@@ -29,6 +32,7 @@ public class GameBackground extends Application {
     private Timeline timeline;
     private Integer timeFrames = STARTTIME;
     private GamePanel gamePanel;
+    private Collision collision;
     public Square s;
     
     public static final CountDownLatch latch = new CountDownLatch(1);
@@ -63,6 +67,7 @@ public class GameBackground extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gamePanel = new GamePanel(Width, Height);
         s = gamePanel.getSquare();
+        collision = new CollisionEvent(gamePanel.getElements());
  
         // Create and configure the Button
         Button button = new Button();
@@ -71,36 +76,40 @@ public class GameBackground extends Application {
         if (timeline != null) {
             timeline.stop();
         }
-        timeFrames = STARTTIME;
-        timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(1000/FPS),
-                  event -> {
-					// TODO Auto-generated method stub
-					timeFrames++;
-					gamePanel.setTime(timeFrames);
-				    drawShapes(gc);
-				}));
-        timeline.playFromStart();
- 
-        // Create and configure VBox
-        // gap between components is 20
-        VBox vb = new VBox(20);
-        // center the components within VBox
-        vb.setAlignment(Pos.CENTER);
-        // Make it as wide as the application frame (scene)
-        vb.setPrefWidth(scene.getWidth());
-        // Move the VBox down a bit
-        vb.setLayoutY(30);
-        // Add the button and timerLabel to the VBox
-        vb.getChildren().addAll(button, canvas);
-        // Add the VBox to the root component
-        root.getChildren().add(vb);
- 
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        KeyPressed(scene, s);
+        if(collision.checkGameOver()){
+			this.drawGameOverScene(primaryStage);
+		}
+        else{
+        	timeFrames = STARTTIME;
+            timeline = new Timeline();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(1000/FPS),
+                      event -> {
+    					// TODO Auto-generated method stub
+    					timeFrames++;
+    					gamePanel.setTime(timeFrames);
+    					drawShapes(gc);
+    				}));
+            timeline.playFromStart();
+         // Create and configure VBox
+            // gap between components is 20
+            VBox vb = new VBox(20);
+            // center the components within VBox
+            vb.setAlignment(Pos.CENTER);
+            // Make it as wide as the application frame (scene)
+            vb.setPrefWidth(scene.getWidth());
+            // Move the VBox down a bit
+            vb.setLayoutY(30);
+            // Add the button and timerLabel to the VBox
+            vb.getChildren().addAll(button, canvas);
+            // Add the VBox to the root component
+            root.getChildren().add(vb);
+     
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            KeyPressed(scene, s);
+        }
     }
 
     private void drawShapes(GraphicsContext gc) {
@@ -115,6 +124,23 @@ public class GameBackground extends Application {
     			gc.fillOval(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
     		}
     	}
+    }
+    
+    private void drawGameOverScene(Stage primaryStage){
+    	Canvas gameOver = new Canvas(Width, Height);
+    	GraphicsContext gc = gameOver.getGraphicsContext2D();
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.fillText(
+            "Game Over", 
+            Math.round(gameOver.getWidth()  / 2), 
+            Math.round(gameOver.getHeight() / 2)
+        );
+        StackPane layout = new StackPane();
+        layout.getChildren().addAll(gameOver);
+
+        primaryStage.setScene(new Scene(layout));
+        primaryStage.show();
     }
     
     private void KeyPressed(Scene scene, Square s){
