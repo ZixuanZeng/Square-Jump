@@ -1,12 +1,15 @@
-import java.awt.Graphics;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+
 public interface ScoringSystem {
 	
 	final int winningScore = 1000;
 	int initialScore = 0;
 	
-	void scoreBoard(Graphics g);
 	void scoringMechanics();
 	boolean isWin();
 	void receiveDamaged();
 	void awardPoints();
+	void drawScore();
 }

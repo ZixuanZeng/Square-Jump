@@ -46,6 +46,6 @@ public class CollisionEvent implements Collision{
 	@Override
 	public boolean checkGameOver(){
 		
-		return true;
+		return false;
 	}
 }
