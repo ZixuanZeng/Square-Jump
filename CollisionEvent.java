@@ -30,6 +30,14 @@ public class CollisionEvent implements Collision{
 					return true;
 				}
 			}
+			if(s instanceof Monster){
+				if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
+						&& YPos >= s.getYPos() - square.getHeight() 
+						&& PrevYPos < s.getYPos() - square.getHeight()){
+					PrevYPos = GameBackground.Height - square.getHeight();
+					return true;
+				}
+			}
 		}
 		PrevYPos = YPos;
 		return false;
