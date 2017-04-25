@@ -50,11 +50,17 @@ public class Square extends Shape implements Movable{
 	@Override
 	public void moveLeft() {
 		XPos-= 10;
+		if(XPos < 0) {
+			XPos = GameBackground.Width-10;
+		}
 	}
 
 	@Override
 	public void moveRight() {
 		XPos+= 10;
+		if(XPos > GameBackground.Width) {
+			XPos = 0;
+		}
 	}
 
 	@Override
