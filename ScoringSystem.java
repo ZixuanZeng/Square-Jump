@@ -11,5 +11,6 @@ public interface ScoringSystem {
 	boolean isWin();
 	void receiveDamaged();
 	int awardPoints();
-	void drawScore();
+	int getScore();
+	void addDistance(int d);
 }

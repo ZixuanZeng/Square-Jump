@@ -5,6 +5,7 @@ import java.util.Random;
 public class GamePanel {
 	private List<Shape> Elements = new ArrayList<Shape>();
 	private List<Integer> UsedRows, UsedRows2;
+	private ScoringSystem Score;
 	private int Time;
 	private Square s;
 	private Collision collision;
@@ -34,6 +35,7 @@ public class GamePanel {
 		s = new Square(width/2, height-20, Time);
 		Elements.add(s);
 		collision = new CollisionEvent(Elements);
+		Score = new ScoreBoard();
 	}
 	
 	public void setTime(int time) {
@@ -47,6 +49,7 @@ public class GamePanel {
 			else {
 				if(s.getBackgroundMove() > 0) {
 					shape.backgroundMove(s.getBackgroundMove());
+					Score.addDistance(s.getBackgroundMove());
 				}
 			}
 		}
@@ -60,5 +63,7 @@ public class GamePanel {
 		return s;
 	}
 	
-    
+    public ScoringSystem getScore() {
+    	return Score;
+    }
 }

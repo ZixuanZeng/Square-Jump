@@ -3,8 +3,8 @@ import javafx.scene.paint.Color;
 public class Monster extends Shape{
 	
 	public Monster(int xPos, int yPos) {
-		Height = 10;
-		Width = 10;
+		Height = 20;
+		Width = 20;
 		XPos = xPos;
 		YPos = yPos;
 		color = Color.RED;

@@ -50,8 +50,8 @@ public class CollisionEvent implements Collision{
 		for(Shape s : Elements) {
 			if(s instanceof Monster){
 				if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
-						&& YPos < s.getYPos() - square.getHeight() 
-						&& PrevYPos >= s.getYPos() - square.getHeight()){
+						&& YPos <= s.getYPos() + s.getHeight() 
+						&& PrevYPos > s.getYPos() + s.getHeight()){
 					PrevYPos = GameBackground.Height - square.getHeight();
 					return true;
 				}

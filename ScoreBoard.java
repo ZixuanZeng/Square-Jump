@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class ScoreBoard implements ScoringSystem{
 	
+	private int Score;
+	
 	public ScoreBoard(){
 		
 	}
@@ -29,13 +31,20 @@ public class ScoreBoard implements ScoringSystem{
 	@Override
 	public int awardPoints() {
 		// TODO Auto-generated method stub
-		return 0;
+		Score += 1000000;
+		return Score;
 	}
 
 	@Override
-	public void drawScore() {
+	public int getScore() {
 		// TODO Auto-generated method stub
-		
+		return Score/1000;
+	}
+
+	@Override
+	public void addDistance(int d) {
+		// TODO Auto-generated method stub
+		Score += d;
 	}
 
 }
