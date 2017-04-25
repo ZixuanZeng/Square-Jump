@@ -72,6 +72,7 @@ public class Square extends Shape implements Movable{
 				resetInitYPos = true;
 			}
 			else if(resetInitYPos){
+				YPos = GameBackground.Height/2;
 				initYPos = initYPos + (GameBackground.Height/2 - predictedYPos);
 				System.out.println(GameBackground.Height/2 - predictedYPos);
 				resetInitYPos = false;
