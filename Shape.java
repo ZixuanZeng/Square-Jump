@@ -14,4 +14,7 @@ public abstract class Shape {
 	public abstract int getHeight();
 	public abstract int getNumOfPoints();
 	public abstract Color getColor();
+	public void backgroundMove(int length) {
+		YPos += length;
+	}
 }

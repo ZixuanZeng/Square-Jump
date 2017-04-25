@@ -1,17 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 
 public class GamePanel {
 	private List<Shape> Elements = new ArrayList<Shape>();
 	private List<Integer> UsedRows, UsedRows2;
 	private int Time;
-	private int Width;
-	private int Height;
 	private Square s;
 	private Collision collision;
 	
@@ -21,20 +15,18 @@ public class GamePanel {
 		Random rand2 = new Random();
 		UsedRows = new ArrayList<Integer>(height/20);
 		UsedRows2 = new ArrayList<Integer>(height/30);
-		Width = width;
-		Height = height;
-		for(int i = 0; i < height/20; i++) {
+		for(int i = 0; i < 10000; i++) {
 			UsedRows.add(0); // set to unused
 			if(i%3 == 0) {
-				Platform p = new Platform(rand.nextInt(width-50), i*20);
+				Platform p = new Platform(rand.nextInt(width-50), i*20 - 100000);
 				Elements.add(p);
 				UsedRows.set(i, 1);
 			}
 		}
-		for(int j = 0; j < height/30; j++){
+		for(int j = 0; j < 10000; j++){
 			UsedRows2.add(0);
-			if(j % 2 ==0){
-				Monster m = new Monster(rand2.nextInt(width-50), j*20);
+			if(j % 4 ==0){
+				Monster m = new Monster(rand2.nextInt(width-50), j*40 - 100000);
 				Elements.add(m);
 				UsedRows2.set(j, 1);
 			}
@@ -46,11 +38,16 @@ public class GamePanel {
 	
 	public void setTime(int time) {
 		Time = time;
-		for(Shape s : Elements) {
-			if(s instanceof Square) {
-				Square square = (Square)s;
+		for(Shape shape : Elements) {
+			if(shape instanceof Square) {
+				Square square = (Square)shape;
 				if(collision.checkCollision()) square.setStartTime(time);
 				square.setTime(Time);
+			}
+			else {
+				if(s.getBackgroundMove() > 0) {
+					shape.backgroundMove(s.getBackgroundMove());
+				}
 			}
 		}
 	}

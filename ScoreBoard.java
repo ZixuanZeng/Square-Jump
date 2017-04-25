@@ -3,6 +3,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class ScoreBoard implements ScoringSystem{
+	
+	public ScoreBoard(){
+		
+	}
 
 	@Override
 	public void scoringMechanics() {
@@ -23,9 +27,9 @@ public class ScoreBoard implements ScoringSystem{
 	}
 
 	@Override
-	public void awardPoints() {
+	public int awardPoints() {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override

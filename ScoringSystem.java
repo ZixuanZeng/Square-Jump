@@ -10,6 +10,6 @@ public interface ScoringSystem {
 	void scoringMechanics();
 	boolean isWin();
 	void receiveDamaged();
-	void awardPoints();
+	int awardPoints();
 	void drawScore();
 }

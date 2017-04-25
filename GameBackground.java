@@ -76,9 +76,6 @@ public class GameBackground extends Application {
         if (timeline != null) {
             timeline.stop();
         }
-        if(collision.checkGameOver()){
-			this.drawGameOverScene(primaryStage);
-		}
         else{
         	timeFrames = STARTTIME;
             timeline = new Timeline();
@@ -87,9 +84,15 @@ public class GameBackground extends Application {
                     new KeyFrame(Duration.millis(1000/FPS),
                       event -> {
     					// TODO Auto-generated method stub
-    					timeFrames++;
-    					gamePanel.setTime(timeFrames);
-    					drawShapes(gc);
+                    	  if(collision.checkGameOver()){
+                    		  timeline.stop();
+                    		  this.drawGameOverScene(primaryStage);
+                  		  }
+                    	  else {
+                    		  timeFrames++;
+                    		  gamePanel.setTime(timeFrames);
+                    		  drawShapes(gc);
+                    	  }
     				}));
             timeline.playFromStart();
          // Create and configure VBox
@@ -115,13 +118,15 @@ public class GameBackground extends Application {
     private void drawShapes(GraphicsContext gc) {
     	gc.clearRect(0, 0, Width, Height);
     	for(Shape shape : gamePanel.getElements()) {
-    		if(shape instanceof Square || shape instanceof Platform) {
-    			gc.setFill(shape.getColor());
-    			gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
-    		} 
-    		else if(shape instanceof Monster){
-    			gc.setFill(shape.getColor());
-    			gc.fillOval(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    		if(shape.getYPos() >= 0) {
+    			if(shape instanceof Square || shape instanceof Platform) {
+    				gc.setFill(shape.getColor());
+    				gc.fillRect(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    			} 
+    			else if(shape instanceof Monster){
+    				gc.setFill(shape.getColor());
+    				gc.fillOval(shape.getXPos(), shape.getYPos(), shape.getWidth(), shape.getHeight());
+    			}
     		}
     	}
     }

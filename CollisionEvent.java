@@ -45,7 +45,21 @@ public class CollisionEvent implements Collision{
 	
 	@Override
 	public boolean checkGameOver(){
-		
+		YPos = square.getYPos();
+		XPos = square.getXPos();
+		for(Shape s : Elements) {
+			if(s instanceof Monster){
+				if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
+						&& YPos < s.getYPos() - square.getHeight() 
+						&& PrevYPos >= s.getYPos() - square.getHeight()){
+					PrevYPos = GameBackground.Height - square.getHeight();
+					return true;
+				}
+			}
+		}
+		PrevYPos = YPos;
+		if(YPos > GameBackground.Height)
+			return true;
 		return false;
 	}
 }

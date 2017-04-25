@@ -8,4 +8,5 @@ public interface Movable {
     public void moveByGravity();
     public void moveLeft();
     public void moveRight();
+    public int getBackgroundMove();
 }
