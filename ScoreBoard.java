@@ -1,8 +1,5 @@
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-
 public class ScoreBoard implements ScoringSystem{
+	private int Score;
 
 	@Override
 	public void scoringMechanics() {
@@ -27,11 +24,16 @@ public class ScoreBoard implements ScoringSystem{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void addDistance(int dis) {
+		Score += dis;
+	}
 
 	@Override
-	public void drawScore() {
+	public int getScore() {
 		// TODO Auto-generated method stub
-		
+		return Score/1000;
 	}
 
 }

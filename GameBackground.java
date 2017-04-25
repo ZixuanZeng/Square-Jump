@@ -71,7 +71,7 @@ public class GameBackground extends Application {
  
         // Create and configure the Button
         Button button = new Button();
-        button.setText("pause");
+        button.setText("0");
         
         if (timeline != null) {
             timeline.stop();
@@ -92,6 +92,7 @@ public class GameBackground extends Application {
                     		  timeFrames++;
                     		  gamePanel.setTime(timeFrames);
                     		  drawShapes(gc);
+                    		  button.setText(Integer.toString(gamePanel.getScore().getScore()));
                     	  }
     				}));
             timeline.playFromStart();
