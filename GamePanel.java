@@ -9,6 +9,7 @@ public class GamePanel {
 	private int Time;
 	private Square s;
 	private Collision collision;
+	private boolean isGameOver;
 	
 	public GamePanel(int width, int height) {
 		Time = 0;
@@ -32,10 +33,13 @@ public class GamePanel {
 				UsedRows2.set(j, 1);
 			}
 		}
+		Platform p = new Platform(width/2, height - 20);
 		s = new Square(width/2, height-20, Time);
 		Elements.add(s);
+		Elements.add(p);
 		collision = new CollisionEvent(Elements);
 		Score = new ScoreBoard();
+		isGameOver = false;
 	}
 	
 	public void setTime(int time) {
@@ -44,6 +48,7 @@ public class GamePanel {
 			if(shape instanceof Square) {
 				Square square = (Square)shape;
 				if(collision.checkCollision()) square.setStartTime(time);
+				if(collision.checkGameOver()) isGameOver = true;
 				square.setTime(Time);
 			}
 			else {
@@ -65,5 +70,9 @@ public class GamePanel {
 	
     public ScoringSystem getScore() {
     	return Score;
+    }
+    
+    public boolean checkGameOver() {
+    	return isGameOver;
     }
 }

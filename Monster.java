@@ -10,6 +10,10 @@ public class Monster extends Shape{
 		color = Color.RED;
 		
 	}
+	
+	public void kill() {
+		XPos = 1000;
+	}
 
 	@Override
 	public int getXPos() {

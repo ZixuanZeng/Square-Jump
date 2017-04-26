@@ -14,6 +14,8 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	JLabel gameName;
 	JToggleButton button1, button2, button3, button4;
 	ScoreBoard score;
+	private boolean started = false;
+	private GameBackground gameBackground;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -51,13 +53,20 @@ public class MyPanel extends JApplet implements Background, ActionListener{
         myPanel.add(button1);
         button1.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent arg0){
+        		if(started) {
+        			Stage primaryStage = new Stage();
+        			gameBackground.restart(primaryStage);
+        		}
+        		else {
         		new Thread() {
                     @Override
                     public void run() {
                         javafx.application.Application.launch(GameBackground.class);
                     }
                 }.start();
-                GameBackground gameBackground = GameBackground.waitForGameBackground();
+                gameBackground = GameBackground.waitForGameBackground();
+                started = true;
+        		}
         	}
         });
         

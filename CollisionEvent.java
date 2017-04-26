@@ -6,6 +6,7 @@ public class CollisionEvent implements Collision{
 	private int YPos;
 	private int PrevYPos;
 	private Square square;
+	private boolean isGameOver;
 	
 	public CollisionEvent(List<Shape> elements) {
 		Elements = elements;
@@ -30,11 +31,20 @@ public class CollisionEvent implements Collision{
 					return true;
 				}
 			}
-			if(s instanceof Monster){
+			else if(s instanceof Monster){
 				if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
 						&& YPos >= s.getYPos() - square.getHeight() 
 						&& PrevYPos < s.getYPos() - square.getHeight()){
 					PrevYPos = GameBackground.Height - square.getHeight();
+					Monster m = (Monster)s;
+					m.kill();
+					return true;
+				}
+				else if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
+						&& YPos <= s.getYPos() + s.getHeight() 
+						&& PrevYPos > s.getYPos() + s.getHeight()){
+					PrevYPos = GameBackground.Height - square.getHeight();
+					isGameOver = true;
 					return true;
 				}
 			}
@@ -45,21 +55,8 @@ public class CollisionEvent implements Collision{
 	
 	@Override
 	public boolean checkGameOver(){
-		YPos = square.getYPos();
-		XPos = square.getXPos();
-		for(Shape s : Elements) {
-			if(s instanceof Monster){
-				if(XPos > s.getXPos()-square.getWidth() && XPos < s.getXPos() + s.getWidth() 
-						&& YPos <= s.getYPos() + s.getHeight() 
-						&& PrevYPos > s.getYPos() + s.getHeight()){
-					PrevYPos = GameBackground.Height - square.getHeight();
-					return true;
-				}
-			}
-		}
-		PrevYPos = YPos;
 		if(YPos > GameBackground.Height)
-			return true;
-		return false;
+			isGameOver =  true;
+		return isGameOver;
 	}
 }

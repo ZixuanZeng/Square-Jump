@@ -32,8 +32,7 @@ public class GameBackground extends Application {
     private Timeline timeline;
     private Integer timeFrames = STARTTIME;
     private GamePanel gamePanel;
-    private Collision collision;
-    public Square s;
+    private Square s;
     
     public static final CountDownLatch latch = new CountDownLatch(1);
     public static GameBackground gameBackground = null;
@@ -67,7 +66,6 @@ public class GameBackground extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gamePanel = new GamePanel(Width, Height);
         s = gamePanel.getSquare();
-        collision = new CollisionEvent(gamePanel.getElements());
  
         // Create and configure the Button
         Button button = new Button();
@@ -84,7 +82,63 @@ public class GameBackground extends Application {
                     new KeyFrame(Duration.millis(1000/FPS),
                       event -> {
     					// TODO Auto-generated method stub
-                    	  if(collision.checkGameOver()){
+                    	  if(gamePanel.checkGameOver()){
+                    		  timeline.stop();
+                    		  this.drawGameOverScene(primaryStage);
+                  		  }
+                    	  else {
+                    		  timeFrames++;
+                    		  gamePanel.setTime(timeFrames);
+                    		  drawShapes(gc);
+                    		  button.setText(Integer.toString(gamePanel.getScore().getScore()));
+                    	  }
+    				}));
+            timeline.playFromStart();
+         // Create and configure VBox
+            // gap between components is 20
+            VBox vb = new VBox(20);
+            // center the components within VBox
+            vb.setAlignment(Pos.CENTER);
+            // Make it as wide as the application frame (scene)
+            vb.setPrefWidth(scene.getWidth());
+            // Move the VBox down a bit
+            vb.setLayoutY(30);
+            // Add the button and timerLabel to the VBox
+            vb.getChildren().addAll(button, canvas);
+            // Add the VBox to the root component
+            root.getChildren().add(vb);
+     
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            KeyPressed(scene, s);
+        }
+    }
+    
+    public void restart(Stage primaryStage) {
+    	// Setup the Stage and the Scene (the scene graph)
+        Group root = new Group();
+        Scene scene = new Scene(root, Width, Height+80);
+        Canvas canvas = new Canvas(Width, Height);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gamePanel = new GamePanel(Width, Height);
+        s = gamePanel.getSquare();
+ 
+        // Create and configure the Button
+        Button button = new Button();
+        button.setText("0");
+        
+        if (timeline != null) {
+            timeline.stop();
+        }
+        else{
+        	timeFrames = STARTTIME;
+            timeline = new Timeline();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(1000/FPS),
+                      event -> {
+    					// TODO Auto-generated method stub
+                    	  if(gamePanel.checkGameOver()){
                     		  timeline.stop();
                     		  this.drawGameOverScene(primaryStage);
                   		  }
@@ -140,14 +194,33 @@ public class GameBackground extends Application {
         gc.fillText(
             "Game Over", 
             Math.round(gameOver.getWidth()  / 2), 
-            Math.round(gameOver.getHeight() / 2)
+            Math.round(gameOver.getHeight() / 3)
         );
+        gc.fillText(
+                "Final Score: " + Integer.toString(gamePanel.getScore().getScore()), 
+                Math.round(gameOver.getWidth()  / 2), 
+                Math.round(gameOver.getHeight() / 3 + 30)
+            );
+        
+     // Create and configure the Button
+        Button button = new Button();
+        button.setText("Restart");
+        
         StackPane layout = new StackPane();
         layout.getChildren().addAll(gameOver);
+        layout.getChildren().add(button);
 
         primaryStage.setScene(new Scene(layout));
         primaryStage.show();
+        
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("restart");
+                restart(primaryStage);
+            }
+        });
     }
+    
     
     private void KeyPressed(Scene scene, Square s){
     	scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -155,11 +228,15 @@ public class GameBackground extends Application {
     	        switch (event.getCode()) {
     	        case A:
     	        	s.moveLeft();
-    	        	System.out.println("Move left");
     	        	break;
     	        case D:
     	        	s.moveRight();
-    	        	System.out.println("Move right");
+    	        	break;
+    	        case LEFT:
+    	        	s.moveLeft();
+    	        	break;
+    	        case RIGHT:
+    	        	s.moveRight();
     	        	break;
 				default:
 					break;
@@ -167,5 +244,6 @@ public class GameBackground extends Application {
     	      }
     	    });
     }
+  
     
 }
