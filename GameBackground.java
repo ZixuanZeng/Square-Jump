@@ -57,8 +57,6 @@ public class GameBackground extends Application {
  
     @Override
     public void start(Stage primaryStage) {
- 
-        // Setup the Stage and the Scene (the scene graph)
         primaryStage.setTitle("Square Jump");
         Group root = new Group();
         Scene scene = new Scene(root, Width, Height+80);
@@ -67,7 +65,6 @@ public class GameBackground extends Application {
         gamePanel = new GamePanel(Width, Height);
         s = gamePanel.getSquare();
  
-        // Create and configure the Button
         Button button = new Button();
         button.setText("0");
         
@@ -94,18 +91,11 @@ public class GameBackground extends Application {
                     	  }
     				}));
             timeline.playFromStart();
-         // Create and configure VBox
-            // gap between components is 20
             VBox vb = new VBox(20);
-            // center the components within VBox
             vb.setAlignment(Pos.CENTER);
-            // Make it as wide as the application frame (scene)
             vb.setPrefWidth(scene.getWidth());
-            // Move the VBox down a bit
             vb.setLayoutY(30);
-            // Add the button and timerLabel to the VBox
             vb.getChildren().addAll(button, canvas);
-            // Add the VBox to the root component
             root.getChildren().add(vb);
      
             primaryStage.setScene(scene);
@@ -115,7 +105,6 @@ public class GameBackground extends Application {
     }
     
     public void restart(Stage primaryStage) {
-    	// Setup the Stage and the Scene (the scene graph)
         Group root = new Group();
         Scene scene = new Scene(root, Width, Height+80);
         Canvas canvas = new Canvas(Width, Height);
@@ -123,7 +112,6 @@ public class GameBackground extends Application {
         gamePanel = new GamePanel(Width, Height);
         s = gamePanel.getSquare();
  
-        // Create and configure the Button
         Button button = new Button();
         button.setText("0");
         
@@ -150,18 +138,11 @@ public class GameBackground extends Application {
                     	  }
     				}));
             timeline.playFromStart();
-         // Create and configure VBox
-            // gap between components is 20
             VBox vb = new VBox(20);
-            // center the components within VBox
             vb.setAlignment(Pos.CENTER);
-            // Make it as wide as the application frame (scene)
             vb.setPrefWidth(scene.getWidth());
-            // Move the VBox down a bit
             vb.setLayoutY(30);
-            // Add the button and timerLabel to the VBox
             vb.getChildren().addAll(button, canvas);
-            // Add the VBox to the root component
             root.getChildren().add(vb);
      
             primaryStage.setScene(scene);
@@ -202,7 +183,7 @@ public class GameBackground extends Application {
                 Math.round(gameOver.getHeight() / 3 + 30)
             );
         
-     // Create and configure the Button
+
         Button button = new Button();
         button.setText("Restart");
         

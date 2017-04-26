@@ -55,7 +55,7 @@ public class MyPanel extends JApplet implements Background, ActionListener{
         	public void actionPerformed(ActionEvent arg0){
         		if(started) {
         			Stage primaryStage = new Stage();
-        			gameBackground.restart(primaryStage);
+        			//gameBackground.restart(primaryStage);
         		}
         		else {
         		new Thread() {
@@ -100,7 +100,6 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	    game.setSize(1000,800);
 		game.setVisible(true);
 	}
-	// Suppose to use in Swing later
 	
 	public void init(){
 		try{
@@ -141,43 +140,13 @@ public class MyPanel extends JApplet implements Background, ActionListener{
 	}
 
 	@Override
-	public void displayTutorial() {
+	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("Testing displayTutorial");
+		
 	}
 
 	@Override
 	public void playBackgroundMusic() {
-		// TODO Auto-generated method stub
-		System.out.println("Testing playBackgroundMusic");
-	}
-
-	@Override
-	public void playGameMusic() {
-		// TODO Auto-generated method stub
-		System.out.println("Testing playGameMusic");
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		System.out.println("Testing paint");
-	}
-
-	@Override
-	public void drawObstacles(int x, int y, int sizeLenght, Graphics g, int type) {
-		// TODO Auto-generated method stub
-		System.out.println("Testing drawObstacles");
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println("Testing run");
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
